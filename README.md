@@ -1,6 +1,10 @@
 # showPrayers
 This script will show you the prayer times
+******************
 
+![Screenshot_showPrayers ](https://raw.githubusercontent.com/samad20/showPrayers/main/Screenshot_showPrayers.png)
+
+******************
 
 You need to install these packages:
 * curl
