@@ -39,11 +39,6 @@ Go back to your terminal and then change your directory to ` showPrayers `
  cd showPrayers
  ```
 
-make the script executable
- ```
- chmod +x showPrayers.sh
- ```
-
 Run the script 
 ```
 ./showPrayers.sh
