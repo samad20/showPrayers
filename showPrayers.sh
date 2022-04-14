@@ -91,7 +91,7 @@ fast=$(date -u -d @$(($(date -d "$maghrib" '+%s') - $(date -d "$fajr" '+%s'))) '
 Tofast=$(date -u -d @$(($(date -d "$maghrib" '+%s') - $(date -d "$currenttime" '+%s'))) '+%H:%M')
 
 # Sending the salawat to the stdout
-
+printf "\nTime: $currenttime\n"
 printf "\n🕌 Prayer times for the day: $day \n$daynumber-$month-$year\n"
 printf "\n۞ Fajr\t\t$fajr\n"
 printf "۞ Sunrise\t$sunrise\n"
