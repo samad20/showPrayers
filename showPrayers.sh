@@ -90,3 +90,17 @@ remain=$(date -u -d @$(($(date -d "$nextTime" "+%s") - $(date -d "$currenttime" 
 fast=$(date -u -d @$(($(date -d "$maghrib" '+%s') - $(date -d "$fajr" '+%s'))) '+%H:%M')
 Tofast=$(date -u -d @$(($(date -d "$maghrib" '+%s') - $(date -d "$currenttime" '+%s'))) '+%H:%M')
 
+# Sending the salawat to the stdout
+
+printf "\n🕌 Prayer times for the day: $day \n$daynumber-$month-$year\n"
+printf "\n۞ Fajr\t\t$fajr\n"
+printf "۞ Sunrise\t$sunrise\n"
+printf "۞ Dhuhr\t\t$dhuhr\n"
+printf "۞ Asr\t\t$asr\n"
+printf "۞ Maghrib\t$maghrib\n"
+printf "۞ Isha\t$isha\n\n"
+
+printf "\n🕌 Next prayer ۩ $nextprayer ۩ $nextTime\n"
+printf " Remaining time $remain\n"
+printf " Duration of fasting $fast\n"
+printf " Time left until breakfast $Tofast\n\n"
