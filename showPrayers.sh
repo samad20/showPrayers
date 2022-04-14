@@ -98,7 +98,7 @@ printf "۞ Sunrise\t$sunrise\n"
 printf "۞ Dhuhr\t\t$dhuhr\n"
 printf "۞ Asr\t\t$asr\n"
 printf "۞ Maghrib\t$maghrib\n"
-printf "۞ Isha\t$isha\n\n"
+printf "۞ Isha\t\t$isha\n\n"
 
 printf "\n🕌 Next prayer ۩ $nextprayer ۩ $nextTime\n"
 printf "Remaining time $remain\n\n"
