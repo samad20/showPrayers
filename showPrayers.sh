@@ -32,7 +32,7 @@ country="US"
 # 99 - Custom. See https://aladhan.com/calculation-methods
 
 # change this - use information abbove
-method="2" #method 2 for Americas
+method="2" #method 2 for Americas for example
 
 
 # adjust the Hijri date- change it if you need
@@ -42,3 +42,51 @@ output="$HOME/showPrayers/prayers.json"
 
 # The api can be found for free
 curl "http://api.aladhan.com/v1/timings/$today?latitude=$lat&longitude=$long&method=$method&adjustment=$adjustment" -s -o $output
+
+
+
+# Parsing the data for the five salawat
+prayers="$HOME/showPrayers/prayers.json"
+fajr=$(jq ".data.timings.Fajr" $prayers | bc | awk '{$1=$1};1')
+sunrise=$(jq ".data.timings.Sunrise" $prayers | bc | awk '{$1=$1};1')
+dhuhr=$(jq ".data.timings.Dhuhr" $prayers | bc | awk '{$1=$1};1')
+asr=$(jq ".data.timings.Asr" $prayers | bc | awk '{$1=$1};1')
+maghrib=$(jq ".data.timings.Maghrib" $prayers | bc | awk '{$1=$1};1')
+isha=$(jq ".data.timings.Isha" $prayers | bc | awk '{$1=$1};1')
+day=$(jq ".data.date.hijri.weekday.en" $prayers | bc | awk '{$1=$1};1')
+daynumber=$(jq ".data.date.hijri.day" $prayers | bc | awk '{$1=$1};1')
+month=$(jq ".data.date.hijri.month.en" $prayers | bc | awk '{$1=$1};1')
+year=$(jq ".data.date.hijri.year" $prayers | bc | awk '{$1=$1};1')
+
+nextprayer=""
+# Get the current time
+currenttime=$(date +%H:%M)
+
+# For each prayer, two variables are used, one to be printed as the name of the prayer (nextprayer), 
+# and the other variable (time) to be used in the calculation of the remaining time (nextTime)
+if [[ $currenttime > $fajr && $currenttime < $dhuhr ]]; then
+    nextprayer=$(echo "Dhuhr")
+    nextTime=$dhuhr
+
+elif [[ $currenttime > $dhuhr && $currenttime < $asr ]]; then
+    nextprayer=$(echo "Asr")
+    nextTime=$asr
+
+elif [[ $currenttime > $asr && $currenttime < $maghrib ]]; then
+    nextprayer=$(echo "Maghrib")
+    nextTime=$maghrib
+
+elif [[ $currenttime > $maghrib && $currenttime < $isha ]]; then
+    nextprayer=$(echo "Isha")
+    nextTime=$isha
+
+elif [[ $currenttime > $isha || $currenttime < $fajr ]]; then
+    nextprayer=$(echo "Fajr")
+    nextTime=$fajr
+fi
+
+# Calculate the remaining time to the next prayer (or iftar in ramadan and the fast duration is ramadan)
+remain=$(date -u -d @$(($(date -d "$nextTime" "+%s") - $(date -d "$currenttime" "+%s"))) "+%H:%M")
+fast=$(date -u -d @$(($(date -d "$maghrib" '+%s') - $(date -d "$fajr" '+%s'))) '+%H:%M')
+Tofast=$(date -u -d @$(($(date -d "$maghrib" '+%s') - $(date -d "$currenttime" '+%s'))) '+%H:%M')
+
