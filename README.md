@@ -35,7 +35,7 @@ Then clone the repository (copy this command on your Terminal)
  ```
  git clone https://github.com/samad20/showPrayers.git
  ```
-go to your ` Home Directory ` and open ` showPrayers ` folder then open ` showPrayers.sh ` file 
+go to your ` Home Directory ` and open ` showPrayers ` folder then open ` showPrayers.sh ` file (if you have Linux) Or ` showPrayersMacOS.sh ` (if you have macOS)
 
 You need to change the values of five variables (Read the comments if you need help):
 * lat
