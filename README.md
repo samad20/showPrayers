@@ -9,6 +9,7 @@ This script will show you the prayer times
 You need to install these packages:
 * curl
 * jq
+* coreutils (for macOS only)
 
 Debian/Ubuntu/Pop!_OS/Linux Mint
  ```
@@ -23,6 +24,11 @@ Arch Linux/Manjaro
 Fedora
  ```
  sudo dnf install curl jq
+ ```
+
+macOS
+ ```
+ brew install coreutils jq
  ```
 
 Then clone the repository (copy this command on your Terminal)
@@ -43,7 +49,12 @@ Go back to your terminal and then change your directory to ` showPrayers `
  cd showPrayers
  ```
 
-Run the script 
+Run the script (Linux)
 ```
 ./showPrayers.sh
+```
+
+Run the script (macOS)
+```
+./showPrayersMacOS.sh
 ```
